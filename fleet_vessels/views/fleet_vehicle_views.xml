@@ -6,57 +6,48 @@
         <field name="model">fleet.vehicle</field>
         <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
         <field name="arch" type="xml">
-            <!-- Add Vessel Information page in notebook -->
-            <xpath expr="//notebook" position="inside">
-                <page string="Vessel Information" invisible="model_id.vehicle_type != 'vessel'">
-                    <group>
-                        <group string="Dimensions">
-                            <field name="vessel_length"/>
-                            <field name="vessel_beam"/>
-                            <field name="vessel_draft"/>
-                            <field name="length_unit"/>
-                        </group>
-                        <group string="Tonnage">
-                            <field name="vessel_tonnage"/>
-                            <field name="tonnage_unit"/>
-                        </group>
-                    </group>
-                    <group>
-                        <group string="Classification">
-                            <field name="vessel_type_detail"/>
-                            <field name="vessel_flag"/>
-                        </group>
-                        <group string="Maritime Identification">
-                            <field name="vessel_imo_number"/>
-                            <field name="vessel_mmsi"/>
-                            <field name="vessel_call_sign"/>
-                        </group>
-                    </group>
-                    <group>
-                        <group string="Construction">
-                            <field name="hull_material"/>
-                            <field name="engine_type"/>
-                        </group>
-                        <group string="Performance &amp; Capacity">
-                            <field name="max_speed_knots"/>
-                            <field name="passenger_capacity"/>
-                            <field name="crew_capacity"/>
-                        </group>
-                    </group>
-                </page>
+            <!-- Add vessel-specific fields to the Model page -->
+            <!-- Add vessel dimensions and tonnage after the Model group -->
+            <xpath expr="//page[@name='page_model']//group[@name='group_model']" position="after">
+                <group string="Dimensions" invisible="vehicle_type != 'vessel'">
+                    <label for="vessel_length"/>
+                    <div class="o_row">
+                        <field name="vessel_length"/>
+                        <field name="length_unit"/>
+                    </div>
+                    <field name="vessel_beam"/>
+                    <field name="vessel_draft"/>
+                </group>
+                <group string="Tonnage" invisible="vehicle_type != 'vessel'">
+                    <label for="vessel_tonnage"/>
+                    <div class="o_row">
+                        <field name="vessel_tonnage"/>
+                        <field name="tonnage_unit"/>
+                    </div>
+                </group>
             </xpath>
 
-
-            <!-- Hide car/bike specific fields when vessel is selected -->
-            <!-- Note: These fields may not exist in all Odoo 19 versions -->
-            <!-- Uncomment if needed:
-            <xpath expr="//field[@name='seats']" position="attributes">
-                <attribute name="invisible">model_id.vehicle_type == 'vessel'</attribute>
+            <!-- Add vessel classification, identification, construction and performance fields after Engine group -->
+            <xpath expr="//page[@name='page_model']//field[@name='co2_standard']" position="after">
+                <group string="Classification" invisible="vehicle_type != 'vessel'">
+                    <field name="vessel_type_detail"/>
+                    <field name="vessel_flag"/>
+                </group>
+                <group string="Maritime Identification" invisible="vehicle_type != 'vessel'">
+                    <field name="vessel_imo_number"/>
+                    <field name="vessel_mmsi"/>
+                    <field name="vessel_call_sign"/>
+                </group>
+                <group string="Construction" invisible="vehicle_type != 'vessel'">
+                    <field name="hull_material"/>
+                    <field name="engine_type"/>
+                </group>
+                <group string="Performance &amp; Capacity" invisible="vehicle_type != 'vessel'">
+                    <field name="max_speed_knots"/>
+                    <field name="passenger_capacity"/>
+                    <field name="crew_capacity"/>
+                </group>
             </xpath>
-            <xpath expr="//field[@name='doors']" position="attributes">
-                <attribute name="invisible">model_id.vehicle_type == 'vessel'</attribute>
-            </xpath>
-            -->
         </field>
     </record>
 
