@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Fleet Vehicle Form View -->
+    <record id="fleet_vehicle_form_vessel" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.vessel</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Vessel Information page in notebook -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Vessel Information" invisible="model_id.vehicle_type != 'vessel'">
+                    <group>
+                        <group string="Dimensions">
+                            <field name="vessel_length"/>
+                            <field name="vessel_beam"/>
+                            <field name="vessel_draft"/>
+                            <field name="length_unit"/>
+                        </group>
+                        <group string="Tonnage">
+                            <field name="vessel_tonnage"/>
+                            <field name="tonnage_unit"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Classification">
+                            <field name="vessel_type_detail"/>
+                            <field name="vessel_flag"/>
+                        </group>
+                        <group string="Maritime Identification">
+                            <field name="vessel_imo_number"/>
+                            <field name="vessel_mmsi"/>
+                            <field name="vessel_call_sign"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Construction">
+                            <field name="hull_material"/>
+                            <field name="engine_type"/>
+                        </group>
+                        <group string="Performance &amp; Capacity">
+                            <field name="max_speed_knots"/>
+                            <field name="passenger_capacity"/>
+                            <field name="crew_capacity"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+
+            <!-- Hide car/bike specific fields when vessel is selected -->
+            <!-- Note: These fields may not exist in all Odoo 19 versions -->
+            <!-- Uncomment if needed:
+            <xpath expr="//field[@name='seats']" position="attributes">
+                <attribute name="invisible">model_id.vehicle_type == 'vessel'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='doors']" position="attributes">
+                <attribute name="invisible">model_id.vehicle_type == 'vessel'</attribute>
+            </xpath>
+            -->
+        </field>
+    </record>
+
+    <!-- Extend Fleet Vehicle Tree View -->
+    <record id="fleet_vehicle_list_vessel" model="ir.ui.view">
+        <field name="name">fleet.vehicle.tree.vessel</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='model_id']" position="after">
+                <field name="vessel_type_detail" optional="hide"/>
+                <field name="vessel_imo_number" optional="hide"/>
+                <field name="vessel_mmsi" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add search filters for vessels -->
+    <record id="fleet_vehicle_search_vessel" model="ir.ui.view">
+        <field name="name">fleet.vehicle.search.vessel</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter name="vessel" string="Vessels" domain="[('model_id.vehicle_type', '=', 'vessel')]"/>
+                <field name="vessel_imo_number"/>
+                <field name="vessel_mmsi"/>
+                <field name="vessel_call_sign"/>
+            </xpath>
+            <xpath expr="//group" position="inside">
+                <filter string="Vessel Type" name="group_vessel_type" context="{'group_by': 'vessel_type_detail'}"/>
+                <filter string="Flag State" name="group_flag" context="{'group_by': 'vessel_flag'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Kanban View - Add vessel fields for data availability -->
+    <record id="fleet_vehicle_kanban_vessel" model="ir.ui.view">
+        <field name="name">fleet.vehicle.kanban.vessel</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_kanban"/>
+        <field name="arch" type="xml">
+            <!-- Add vessel fields to kanban for filtering and searching -->
+            <field name="license_plate" position="after">
+                <field name="vessel_imo_number"/>
+                <field name="vessel_mmsi"/>
+                <field name="vessel_type_detail"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Vessel Categories -->
+        <record id="model_category_yacht" model="fleet.vehicle.model.category">
+            <field name="name">Yacht</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <record id="model_category_cargo_ship" model="fleet.vehicle.model.category">
+            <field name="name">Cargo Ship</field>
+            <field name="sequence">101</field>
+        </record>
+
+        <record id="model_category_fishing_vessel" model="fleet.vehicle.model.category">
+            <field name="name">Fishing Vessel</field>
+            <field name="sequence">102</field>
+        </record>
+
+        <record id="model_category_passenger_ship" model="fleet.vehicle.model.category">
+            <field name="name">Passenger Ship</field>
+            <field name="sequence">103</field>
+        </record>
+
+        <record id="model_category_tanker" model="fleet.vehicle.model.category">
+            <field name="name">Tanker</field>
+            <field name="sequence">104</field>
+        </record>
+
+        <record id="model_category_container_ship" model="fleet.vehicle.model.category">
+            <field name="name">Container Ship</field>
+            <field name="sequence">105</field>
+        </record>
+
+        <record id="model_category_tugboat" model="fleet.vehicle.model.category">
+            <field name="name">Tugboat</field>
+            <field name="sequence">106</field>
+        </record>
+
+        <record id="model_category_ferry" model="fleet.vehicle.model.category">
+            <field name="name">Ferry</field>
+            <field name="sequence">107</field>
+        </record>
+
+        <record id="model_category_naval" model="fleet.vehicle.model.category">
+            <field name="name">Naval/Military</field>
+            <field name="sequence">108</field>
+        </record>
+
+        <record id="model_category_research_vessel" model="fleet.vehicle.model.category">
+            <field name="name">Research Vessel</field>
+            <field name="sequence">109</field>
+        </record>
+    </data>
+</odoo>

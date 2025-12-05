@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vessel Brands -->
+        <record id="brand_azimut" model="fleet.vehicle.model.brand">
+            <field name="name">Azimut Yachts</field>
+        </record>
+
+        <record id="brand_maersk" model="fleet.vehicle.model.brand">
+            <field name="name">Maersk</field>
+        </record>
+
+        <record id="brand_sunseeker" model="fleet.vehicle.model.brand">
+            <field name="name">Sunseeker</field>
+        </record>
+
+        <!-- Vessel Models -->
+        <record id="model_azimut_s7" model="fleet.vehicle.model">
+            <field name="name">S7</field>
+            <field name="brand_id" ref="brand_azimut"/>
+            <field name="vehicle_type">vessel</field>
+            <field name="category_id" ref="model_category_yacht"/>
+            <field name="vessel_type_detail">yacht</field>
+            <field name="vessel_length">22.25</field>
+            <field name="vessel_beam">5.43</field>
+            <field name="vessel_draft">1.65</field>
+            <field name="length_unit">m</field>
+            <field name="hull_material">fiberglass</field>
+            <field name="engine_type">diesel</field>
+            <field name="max_speed_knots">32</field>
+            <field name="passenger_capacity">12</field>
+            <field name="crew_capacity">2</field>
+            <field name="default_fuel_type">diesel</field>
+        </record>
+
+        <record id="model_container_ship_emma" model="fleet.vehicle.model">
+            <field name="name">Emma Maersk Class</field>
+            <field name="brand_id" ref="brand_maersk"/>
+            <field name="vehicle_type">vessel</field>
+            <field name="category_id" ref="model_category_container_ship"/>
+            <field name="vessel_type_detail">container</field>
+            <field name="vessel_length">397.71</field>
+            <field name="vessel_beam">56.40</field>
+            <field name="vessel_draft">16.00</field>
+            <field name="vessel_tonnage">170794</field>
+            <field name="length_unit">m</field>
+            <field name="tonnage_unit">gt</field>
+            <field name="hull_material">steel</field>
+            <field name="engine_type">diesel</field>
+            <field name="max_speed_knots">25</field>
+            <field name="crew_capacity">30</field>
+            <field name="default_fuel_type">diesel</field>
+        </record>
+
+        <record id="model_sunseeker_predator" model="fleet.vehicle.model">
+            <field name="name">Predator 74</field>
+            <field name="brand_id" ref="brand_sunseeker"/>
+            <field name="vehicle_type">vessel</field>
+            <field name="category_id" ref="model_category_yacht"/>
+            <field name="vessel_type_detail">yacht</field>
+            <field name="vessel_length">22.86</field>
+            <field name="vessel_beam">5.41</field>
+            <field name="vessel_draft">1.52</field>
+            <field name="length_unit">m</field>
+            <field name="hull_material">fiberglass</field>
+            <field name="engine_type">diesel</field>
+            <field name="max_speed_knots">38</field>
+            <field name="passenger_capacity">10</field>
+            <field name="crew_capacity">2</field>
+            <field name="default_fuel_type">diesel</field>
+        </record>
+
+        <!-- Vessel Instances -->
+        <record id="vessel_1" model="fleet.vehicle">
+            <field name="license_plate">YT-2024-001</field>
+            <field name="vin_sn">AZS7001</field>
+            <field name="model_id" ref="model_azimut_s7"/>
+            <field name="color">White</field>
+            <field name="location">Miami Marina</field>
+            <field name="driver_id" ref="base.partner_demo"/>
+            <field name="acquisition_date" eval="(DateTime.now() - timedelta(days=180)).strftime('%Y-%m-%d')"/>
+            <field name="state_id" ref="fleet.fleet_vehicle_state_registered"/>
+            <field name="odometer_unit">kilometers</field>
+            <field name="car_value">2500000</field>
+            <field name="vessel_imo_number">9876543</field>
+            <field name="vessel_mmsi">123456789</field>
+            <field name="vessel_call_sign">WYT001</field>
+            <field name="vessel_flag">United States</field>
+            <field name="vessel_type_detail">yacht</field>
+            <field name="vessel_length">22.25</field>
+            <field name="vessel_beam">5.43</field>
+            <field name="vessel_draft">1.65</field>
+            <field name="length_unit">m</field>
+            <field name="hull_material">fiberglass</field>
+            <field name="engine_type">diesel</field>
+            <field name="max_speed_knots">32</field>
+            <field name="passenger_capacity">12</field>
+            <field name="crew_capacity">2</field>
+            <field name="fuel_type">diesel</field>
+        </record>
+
+        <record id="vessel_2" model="fleet.vehicle">
+            <field name="license_plate">CS-2023-042</field>
+            <field name="vin_sn">MAERSK2023042</field>
+            <field name="model_id" ref="model_container_ship_emma"/>
+            <field name="color">Blue/Red</field>
+            <field name="location">Port of Rotterdam</field>
+            <field name="acquisition_date" eval="(DateTime.now() - timedelta(days=730)).strftime('%Y-%m-%d')"/>
+            <field name="state_id" ref="fleet.fleet_vehicle_state_registered"/>
+            <field name="odometer_unit">kilometers</field>
+            <field name="car_value">150000000</field>
+            <field name="vessel_imo_number">9321483</field>
+            <field name="vessel_mmsi">219000606</field>
+            <field name="vessel_call_sign">OXJB2</field>
+            <field name="vessel_flag">Denmark</field>
+            <field name="vessel_type_detail">container</field>
+            <field name="vessel_length">397.71</field>
+            <field name="vessel_beam">56.40</field>
+            <field name="vessel_draft">16.00</field>
+            <field name="vessel_tonnage">170794</field>
+            <field name="length_unit">m</field>
+            <field name="tonnage_unit">gt</field>
+            <field name="hull_material">steel</field>
+            <field name="engine_type">diesel</field>
+            <field name="max_speed_knots">25</field>
+            <field name="crew_capacity">30</field>
+            <field name="fuel_type">diesel</field>
+        </record>
+
+        <record id="vessel_3" model="fleet.vehicle">
+            <field name="license_plate">YT-2024-015</field>
+            <field name="vin_sn">SSPRED74015</field>
+            <field name="model_id" ref="model_sunseeker_predator"/>
+            <field name="color">Metallic Grey</field>
+            <field name="location">Monaco Yacht Club</field>
+            <field name="driver_id" ref="base.res_partner_address_25"/>
+            <field name="acquisition_date" eval="(DateTime.now() - timedelta(days=90)).strftime('%Y-%m-%d')"/>
+            <field name="state_id" ref="fleet.fleet_vehicle_state_registered"/>
+            <field name="odometer_unit">kilometers</field>
+            <field name="car_value">3200000</field>
+            <field name="vessel_imo_number">9887654</field>
+            <field name="vessel_mmsi">987654321</field>
+            <field name="vessel_call_sign">MYC015</field>
+            <field name="vessel_flag">Monaco</field>
+            <field name="vessel_type_detail">yacht</field>
+            <field name="vessel_length">22.86</field>
+            <field name="vessel_beam">5.41</field>
+            <field name="vessel_draft">1.52</field>
+            <field name="length_unit">m</field>
+            <field name="hull_material">fiberglass</field>
+            <field name="engine_type">diesel</field>
+            <field name="max_speed_knots">38</field>
+            <field name="passenger_capacity">10</field>
+            <field name="crew_capacity">2</field>
+            <field name="fuel_type">diesel</field>
+        </record>
+    </data>
+</odoo>
