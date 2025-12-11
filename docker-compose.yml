@@ -40,6 +40,13 @@ services:
       # Mount custom addons
       - ./fleet:/mnt/extra-addons/fleet
       - ./fleet_vessels:/mnt/extra-addons/fleet_vessels
+      - ./news:/mnt/extra-addons/news
+      - ./sale_subscription:/mnt/extra-addons/sale_subscription
+      - ./muk_web_group:/mnt/extra-addons/muk_web_group
+      - ./muk_web_dialog:/mnt/extra-addons/muk_web_dialog
+      - ./muk_web_colors:/mnt/extra-addons/muk_web_colors
+      - ./muk_web_chatter:/mnt/extra-addons/muk_web_chatter
+      - ./muk_web_appsbar:/mnt/extra-addons/muk_web_appsbar
       # Odoo data persistence
       - odoo-web-data:/var/lib/odoo
       # Odoo config
