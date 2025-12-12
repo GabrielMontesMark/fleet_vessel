@@ -1,0 +1,11 @@
+<odoo>
+    <record id="action_open_argus_metadata_wizard" model="ir.actions.server">
+        <field name="name">Consult Metadata</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" eval="False"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = env['argus.metadata.wizard'].create({}).action_consultar_metadatos()
+        </field>
+    </record>
+</odoo>

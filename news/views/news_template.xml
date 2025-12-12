@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Vista tipo lista (Odoo 18 usa 'list' en lugar de 'tree') -->
+  <record id="view_api_news_list" model="ir.ui.view">
+    <field name="name">api.news.list</field>
+    <field name="model">api.news</field>
+    <field name="arch" type="xml">
+      <list string="Noticias Argus">
+        <header>
+          <button name="action_importar_noticias" string="Importar Noticias" type="object" class="btn-primary"/>
+        </header>
+        <field name="headline"/>
+        <field name="publication_date"/>
+        <field name="free"/>
+        <field name="featured"/>
+        <field name="language_id"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- Vista tipo formulario -->
+  <record id="view_api_news_form" model="ir.ui.view">
+    <field name="name">api.news.form</field>
+    <field name="model">api.news</field>
+    <field name="arch" type="xml">
+      <form string="Noticia Argus">
+        <sheet>
+          <group>
+            <field name="news_id"/>
+            <field name="headline"/>
+            <field name="publication_date"/>
+            <field name="date_modified"/>
+            <field name="free"/>
+            <field name="featured"/>
+            <field name="language_id"/>
+            <field name="news_type_id"/>
+            <field name="region_ids"/>
+            <field name="sector_ids"/>
+            <field name="context_ids"/>
+            <field name="stream_ids"/>
+            <field name="text_html"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Acción para mostrar la vista -->
+  <record id="action_api_news" model="ir.actions.act_window">
+    <field name="name">Noticias Argus</field>
+    <field name="res_model">api.news</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <!-- Menú en api_config_menu.xml (referencia aquí por si lo necesitas agregar) -->
+  <!--
+  <menuitem id="menu_api_news" name="Noticias" parent="menu_api_config_root" action="action_api_news"/>
+  -->
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_api_config_form" model="ir.ui.view">
+        <field name="name">api.config.form</field>
+        <field name="model">api.config</field>
+        <field name="arch" type="xml">
+            <form string="Argus">
+                <header>
+                    <!-- Botón para probar la conexión y obtener token -->
+                    <button name="action_test_connection"
+                            string="Test Connection"
+                            type="object"
+                            class="btn-primary"/>
+                    <!-- Botón para consultar metadatos en Argus -->
+                    <button name="action_consultar_metadatos_argus"
+                            string="View Argus Metadata"
+                            type="object"
+                            class="btn-secondary"/>
+    
+    <button name="action_sync_metadata" string="Sync Argus Metadata" type="object" class="btn-secondary"/>
+                    
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="user"/>
+                        <field name="password"/>
+                        <field name="endpoint"/>
+                        <field name="token" readonly="1"/>
+                        <field name="last_tested" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

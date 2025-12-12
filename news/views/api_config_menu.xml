@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- ACCIONES -->
+  <record id="action_api_config" model="ir.actions.act_window">
+    <field name="name">API Connections</field>
+    <field name="res_model">api.config</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+
+  <record id="action_api_news" model="ir.actions.act_window">
+    <field name="name">News</field>
+    <field name="res_model">api.news</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+ 
+  <!-- Acción servidor para importar noticias -->
+  <record id="action_server_importar_noticias_argus" model="ir.actions.server">
+    <field name="name">Import Argus News</field>
+    <field name="model_id" ref="model_api_news"/>
+    <field name="binding_model_id" ref="model_api_news"/>
+    <field name="state">code</field>
+    <field name="code">model.importar_noticias_argus_diarias()</field>
+  </record>
+
+  
+
+  <!-- MENÚS -->
+
+  <!-- Menú raíz (añadimos web_icon) -->
+  <menuitem id="menu_api_config_root" name="News" sequence="1"
+            web_icon="news,static/description/icon.png"/>
+
+  <!-- Menú de Configuración -->
+  <menuitem id="menu_api_config" name="Configuration"
+            parent="menu_api_config_root"
+            action="action_api_config"
+            sequence="10"/>
+
+
+  <!-- Menú Noticias -->
+  <menuitem id="menu_api_news" name="News" parent="menu_api_config_root" sequence="30"/>
+  <menuitem id="menu_api_news_action" name="See News"
+            parent="menu_api_news"
+            action="action_api_news"
+            sequence="10"/>
+  
+  <menuitem id="menu_importar_noticias_argus"
+            name="Import News"
+            parent="menu_api_news"
+            action="action_server_importar_noticias_argus"
+            sequence="20"/>
+
+ 
+
+</odoo>

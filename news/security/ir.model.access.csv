@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_api_config,api.config,model_api_config,,1,1,1,1
+access_api_news_user,access_api_news_user,model_api_news,,1,1,1,1

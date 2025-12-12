@@ -1,0 +1,7 @@
+<odoo>
+    <record id="model_api_config" model="ir.model">
+        <field name="name">api.config</field>
+        <field name="model">api.config</field>
+        <field name="state">base</field>
+    </record>
+</odoo>
