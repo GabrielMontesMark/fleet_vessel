@@ -38,8 +38,8 @@ services:
       - PASSWORD=odoo
     volumes:
       # Mount custom addons
-      - ./fleet:/mnt/extra-addons/fleet
-      - ./fleet_vessels:/mnt/extra-addons/fleet_vessels
+      # - ./fleet:/mnt/extra-addons/fleet
+      # - ./fleet_vessels:/mnt/extra-addons/fleet_vessels
       # Odoo data persistence
       - odoo-web-data:/var/lib/odoo
       # Odoo config
