@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_marine_hso_importer_form" model="ir.ui.view">
+        <field name="name">marine.hso.importer.form</field>
+        <field name="model">marine.hso.importer</field>
+        <field name="arch" type="xml">
+            <form string="Import Marine Data">
+                <group>
+                    <div class="alert alert-info" role="alert">
+                        Import data from external PostgreSQL table 'marine_vessel' into 'marine.vessel' model.
+                    </div>
+                </group>
+                <footer>
+                    <button name="action_import_data" string="Import Data" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_marine_hso_importer" model="ir.actions.act_window">
+        <field name="name">Import Data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">marine.hso.importer</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_marine_hso_importer"
+              name="Import Wizard"
+              parent="menu_hso_marine_root"
+              action="action_marine_hso_importer"
+              sequence="99"/>
+</odoo>

@@ -40,14 +40,18 @@ services:
       # Mount custom addons
       - ./fleet:/mnt/extra-addons/fleet
       - ./fleet_vessels:/mnt/extra-addons/fleet_vessels
+      - ./hso_marine:/mnt/extra-addons/hso_marine
+      - ./marine_data_importer:/mnt/extra-addons/marine_data_importer
       # Odoo data persistence
       - odoo-web-data:/var/lib/odoo
       # Odoo config
       - ./config:/etc/odoo
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     networks:
       - odoo-network
     restart: unless-stopped
-    command: odoo --dev=all --database=odoo --db_host=db --db_user=odoo --db_password=odoo --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons --init=fleet,fleet_vessels --without-demo=False
+    command: odoo --dev=all --database=odoo --db_host=db --db_user=odoo --db_password=odoo --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons --init=fleet,fleet_vessels,hso_marine --without-demo=False
 
 volumes:
   odoo-db-data:

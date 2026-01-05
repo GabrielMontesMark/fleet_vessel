@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_marine_vessel_form" model="ir.ui.view">
+        <field name="name">marine.vessel.form</field>
+        <field name="model">marine.vessel</field>
+        <field name="arch" type="xml">
+            <form string="Marine Vessel">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Vessel Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="mmsi"/>
+                            <field name="imo"/>
+                            <field name="call_sign"/>
+                            <field name="vessel_type"/>
+                            <field name="flag"/>
+                        </group>
+                        <group>
+                            <field name="length"/>
+                            <field name="width"/>
+                            <field name="draft"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Raw Data">
+                            <field name="raw_json"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_marine_vessel_list" model="ir.ui.view">
+        <field name="name">marine.vessel.list</field>
+        <field name="model">marine.vessel</field>
+        <field name="arch" type="xml">
+            <list string="Marine Vessels">
+                <field name="name"/>
+                <field name="mmsi"/>
+                <field name="imo"/>
+                <field name="call_sign"/>
+                <field name="vessel_type"/>
+                <field name="flag"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_marine_vessel_search" model="ir.ui.view">
+        <field name="name">marine.vessel.search</field>
+        <field name="model">marine.vessel</field>
+        <field name="arch" type="xml">
+            <search string="Search Vessels">
+                <field name="name"/>
+                <field name="mmsi"/>
+                <field name="imo"/>
+                <field name="call_sign"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_marine_vessel" model="ir.actions.act_window">
+        <field name="name">Vessels</field>
+        <field name="res_model">marine.vessel</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create your first vessel or import data.
+          </p>
+        </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_hso_marine_root" name="HSO Marine" sequence="10"/>
+    <menuitem id="menu_marine_vessel" name="Vessels" parent="menu_hso_marine_root" action="action_marine_vessel" sequence="1"/>
+</odoo>
