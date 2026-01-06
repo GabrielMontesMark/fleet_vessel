@@ -2,6 +2,7 @@
 import psycopg2
 import logging
 from odoo import models, fields, api, exceptions
+import os
 
 _logger = logging.getLogger(__name__)
 
@@ -11,10 +12,10 @@ class MarineDataImporter(models.TransientModel):
 
     def action_import_data(self):
         # Database connection parameters
-        db_host = "host.docker.internal" 
-        db_name = "hso_marine_test"
-        db_user = "postgres"
-        db_password = "postgres"
+        db_host = os.environ.get("EXTERNAL_DB_HOST")
+        db_name = os.environ.get("EXTERNAL_DB_NAME")
+        db_user = os.environ.get("EXTERNAL_DB_USER")
+        db_password = os.environ.get("EXTERNAL_DB_PASSWORD")
         
         try:
             conn = psycopg2.connect(
