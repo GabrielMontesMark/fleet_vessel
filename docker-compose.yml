@@ -36,10 +36,14 @@ services:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
+      - MARINE_API_URL=${MARINE_API_URL:-http://host.docker.internal:8000}
+      - MARINE_ADMIN_EMAIL=${MARINE_ADMIN_EMAIL:-support@markdebrand.com}
+      - MARINE_ADMIN_PASSWORD=${MARINE_ADMIN_PASSWORD:-12345678}
     volumes:
       # Mount custom addons
       - ./fleet:/mnt/extra-addons/fleet
       - ./fleet_vessels:/mnt/extra-addons/fleet_vessels
+      - ./marine_registration:/mnt/extra-addons/marine_registration
       # Odoo data persistence
       - odoo-web-data:/var/lib/odoo
       # Odoo config
@@ -47,7 +51,9 @@ services:
     networks:
       - odoo-network
     restart: unless-stopped
-    command: odoo --dev=all --database=odoo --db_host=db --db_user=odoo --db_password=odoo --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons --init=fleet,fleet_vessels --without-demo=False
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: odoo --dev=all --database=odoo --db_host=db --db_user=odoo --db_password=odoo --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons --init=fleet,fleet_vessels,marine_registration --without-demo=False
 
 volumes:
   odoo-db-data:

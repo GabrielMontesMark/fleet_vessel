@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_marine_registration_form" model="ir.ui.view">
+            <field name="name">marine.registration.form</field>
+            <field name="model">marine.registration</field>
+            <field name="arch" type="xml">
+                <form string="Marine User Registration">
+                    <header>
+                        <button name="action_register_user" string="Register User" type="object" class="oe_highlight" invisible="state == 'registered'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,registered,failed"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Personal Information">
+                                <field name="first_name"/>
+                                <field name="last_name"/>
+                                <field name="email"/>
+                                <field name="password" password="True"/>
+                                <field name="password_confirmation" password="True"/>
+                                <field name="phone"/>
+                            </group>
+                            <group string="Professional Information">
+                                <group>
+                                    <field name="company"/>
+                                    <field name="website"/>
+                                    <field name="role"/>
+                                </group>
+                                <group>
+                                    <field name="plan_id"/>
+                                    <field name="billing_period"/>
+                                </group>
+                            </group>
+                        </group>
+                        <group string="Bio">
+                            <field name="bio"/>
+                        </group>
+                        <group string="API Response" invisible="not response_message">
+                            <field name="response_message"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- List View (Formerly Tree View) -->
+        <record id="view_marine_registration_list" model="ir.ui.view">
+            <field name="name">marine.registration.list</field>
+            <field name="model">marine.registration</field>
+            <field name="arch" type="xml">
+                <list string="Marine User Registrations">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="email"/>
+                    <field name="role"/>
+                    <field name="state"/>
+                    <field name="create_date"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_marine_registration" model="ir.actions.act_window">
+            <field name="name">User Registration</field>
+            <field name="res_model">marine.registration</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Register a new marine user
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_marine_registration_root" name="Marine Registration" sequence="10" groups="base.group_user"/>
+        <menuitem id="menu_marine_registration_registration" name="Registrations" parent="menu_marine_registration_root" action="action_marine_registration" sequence="10" groups="base.group_user"/>
+    </data>
+</odoo>
